@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SMCL Portfolio</title>
   <style>
     body {
@@ -76,6 +76,35 @@
       padding: 1em 0;
       margin-top: 2em;
     }
+
+    /* Vehicle Table Styles */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .available {
+      background-color: #c8f7c5;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    .unavailable {
+      background-color: #ffcdd2;
+      color: #c62828;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -83,10 +112,10 @@
     <div class="logo">SMCL</div>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href=\"#home\">Home</a></li>
+        <li><a href=\"#about\">About</a></li>
+        <li><a href=\"#services\">Services</a></li>
+        <li><a href=\"#contact\">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -121,7 +150,34 @@
 
   <section id="tracking" class="section">
     <h2>Track & Schedule</h2>
-    <p>Status: <strong>Available</strong> (sample static status)</p>
+    <p>Status: <strong>Live Availability Below</strong></p>
+
+    <table>
+      <tr>
+        <th>Vehicle</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+      </tr>
+      <tr>
+        <td>Van 1</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+      </tr>
+      <tr>
+        <td>Truck 2</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+      </tr>
+    </table>
   </section>
 
   <section id="feedback" class="section">
