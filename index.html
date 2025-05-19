@@ -133,42 +133,6 @@
       color: #c62828;
       font-weight: bold;
     }
-
-    /* Feedback form styling */
-    #feedbackForm {
-      margin-top: 1em;
-    }
-
-    #feedbackForm label {
-      cursor: pointer;
-      margin-right: 1em;
-    }
-
-    #feedbackForm input[type="radio"] {
-      margin-right: 0.25em;
-      cursor: pointer;
-    }
-
-    #feedbackForm button {
-      background-color: #004d40;
-      color: white;
-      border: none;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #feedbackForm button:hover {
-      background-color: #00695c;
-    }
-
-    #feedbackResults {
-      margin-top: 1em;
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #004d40;
-    }
   </style>
 </head>
 <body>
@@ -180,6 +144,9 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#tracking">Tracking</a></li>
+        <li><a href="#feedback">Feedback</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -196,9 +163,9 @@
     <h2>About Us</h2>
     <p>State Mining Corporation Limited offers minerals like coal, gypsum, dolomite and quartzite. Supporting industries with sustainable high quality resources.</p>
     <h3>Vision</h3>
-    <p>Be the leading company in sustainable minerals resources management to distribute the national wealth to the people of Bhutan</p>
+    <p>Be the leading company in sustainable minerals resources management to distribute the national wealth to the people of Bhutan.</p>
     <h3>Mission</h3>
-    <p>Explore and develop mineral resources in a responsible manner for inter-generational equity</p>
+    <p>Explore and develop mineral resources in a responsible manner for inter-generational equity.</p>
   </section>
 
   <section id="services" class="section">
@@ -249,20 +216,17 @@
 
   <section id="feedback" class="section">
     <h2>Feedback</h2>
-    <p>Please rate our service (1 = Poor, 5 = Excellent):</p>
+    <p>We value your feedback. Please rate and share your thoughts below:</p>
 
-    <form id="feedbackForm">
-      <div style="font-size: 2em; margin-bottom: 1em;">
-        <label><input type="radio" name="rating" value="1" required /> 1</label>
-        <label><input type="radio" name="rating" value="2" /> 2</label>
-        <label><input type="radio" name="rating" value="3" /> 3</label>
-        <label><input type="radio" name="rating" value="4" /> 4</label>
-        <label><input type="radio" name="rating" value="5" /> 5</label>
-      </div>
-      <button type="submit">Submit Feedback</button>
-    </form>
-
-    <div id="feedbackResults">Loading feedback data...</div>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSeK5z8uyUE7GGZGaAtE6fXrpgSFS0zjSgpnUR_PcMHRF5XcHg/viewform?embedded=true" 
+      width="100%" 
+      height="800" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0">
+      Loading…
+    </iframe>
   </section>
 
   <section id="contact" class="section">
@@ -275,9 +239,5 @@
     <p>&copy; 2025 State Mining Corporation Limited</p>
   </footer>
 
-  <script>
-    const form = document.getElementById('feedbackForm');
-    const resultsDiv = document.getElementById('feedbackResults');
-
-    // Load existing ratings from localStorage or initialize empty array
-    let ratings = JSON.parse(localStorage.getItem('
+</body>
+</html>
