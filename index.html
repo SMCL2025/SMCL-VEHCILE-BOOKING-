@@ -195,8 +195,7 @@
 
     <table>
       <tr>
-        <th>Driver Name</th>
-        <th>Vehicle Number</th>
+        <th>Vehicle</th>
         <th>Monday</th>
         <th>Tuesday</th>
         <th>Wednesday</th>
@@ -204,8 +203,7 @@
         <th>Friday</th>
       </tr>
       <tr>
-        <td>PEMA</td>
-        <td>BP-0B-1234</td>
+        <td>Van 1</td>
         <td class="available">Available</td>
         <td class="unavailable">Not Available</td>
         <td class="available">Available</td>
@@ -213,54 +211,24 @@
         <td class="unavailable">Not Available</td>
       </tr>
       <tr>
-        <td>TSHERING</td>
-        <td>BP-1B-3456</td>
-        <td class="available">Available</td>
+        <td>Truck 2</td>
         <td class="unavailable">Not Available</td>
         <td class="available">Available</td>
         <td class="available">Available</td>
         <td class="unavailable">Not Available</td>
-      </tr>
-      <tr>
-        <td>PELDEN</td>
-        <td>BP-2B-9087</td>
         <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-        <td class="available">Available</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-      </tr>
-      <tr>
-        <td>SONAM</td>
-        <td>BP-3B-4567</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-        <td class="available">Available</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-      </tr>
-      <tr>
-        <td>YANGCHEN</td>
-        <td>BP-3B-3456</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-        <td class="available">Available</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-      </tr>
-      <tr>
-        <td>TSHERING</td>
-        <td>BP-4B-3456</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
-        <td class="available">Available</td>
-        <td class="available">Available</td>
-        <td class="unavailable">Not Available</td>
       </tr>
     </table>
 
     <h3>Live Vehicle Location</h3>
     <div id="map"></div>
+  </section>
+
+  <!-- New Reschedule Section Added -->
+  <section id="reschedule" class="section">
+    <h2>Reschedule Your Delivery</h2>
+    <p>If you want to change your delivery date, please use the form below:</p>
+    <p><a href="https://forms.gle/U8tsi4S8hVzLFMqa7" target="_blank" style="color:#00796b; font-weight:bold;">Reschedule Delivery Form</a></p>
   </section>
 
   <section id="feedback" class="section">
@@ -296,30 +264,14 @@
         });
       });
 
-      // Leaflet Map centered on Bhutan
+      // Leaflet Map
       const map = L.map('map').setView([27.5, 90.4], 7);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
 
-      // Example vehicle positions - replace with your actual data fetch
-      const exampleVehicles = [
-        { name: 'PEMA', latitude: 27.5, longitude: 90.4 },
-        { name: 'TSHERING', latitude: 27.6, longitude: 90.5 },
-        { name: 'PELDEN', latitude: 27.4, longitude: 90.3 },
-        { name: 'SONAM', latitude: 27.55, longitude: 90.45 },
-        { name: 'YANGCHEN', latitude: 27.45, longitude: 90.35 },
-        { name: 'TSHERING', latitude: 27.48, longitude: 90.38 }
-      ];
-
-      exampleVehicles.forEach(vehicle => {
-        const marker = L.marker([vehicle.latitude, vehicle.longitude]).addTo(map);
-        marker.bindPopup(`<strong>${vehicle.name}</strong><br>Lat: ${vehicle.latitude}<br>Lon: ${vehicle.longitude}`);
-      });
-
-      // If you have an API endpoint for live data, replace the example above with fetch like this:
-      /*
-      fetch('https://your-api-url.com/api/positions')
+      // Replace the fetch URL with your own Traccar API endpoint (or a proxy)
+      fetch('https://example.com/api/positions')
         .then(response => response.json())
         .then(data => {
           data.forEach(vehicle => {
@@ -332,7 +284,6 @@
         .catch(err => {
           console.error('Error fetching vehicle positions:', err);
         });
-      */
     });
   </script>
 
