@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SMCL Portfolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     body {
       margin: 0;
@@ -116,10 +117,12 @@
       border: 1px solid #aaa;
       padding: 10px;
       text-align: center;
+      cursor: pointer;
     }
 
     th {
       background-color: #f2f2f2;
+      cursor: default;
     }
 
     .available {
@@ -132,6 +135,13 @@
       background-color: #ffcdd2;
       color: #c62828;
       font-weight: bold;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -185,7 +195,8 @@
 
     <table>
       <tr>
-        <th>Vehicle</th>
+        <th>Driver Name</th>
+        <th>Vehicle Number</th>
         <th>Monday</th>
         <th>Tuesday</th>
         <th>Wednesday</th>
@@ -193,7 +204,8 @@
         <th>Friday</th>
       </tr>
       <tr>
-        <td>Van 1</td>
+        <td>PEMA</td>
+        <td>BP-0B-1234</td>
         <td class="available">Available</td>
         <td class="unavailable">Not Available</td>
         <td class="available">Available</td>
@@ -201,14 +213,54 @@
         <td class="unavailable">Not Available</td>
       </tr>
       <tr>
-        <td>Truck 2</td>
+        <td>TSHERING</td>
+        <td>BP-1B-3456</td>
+        <td class="available">Available</td>
         <td class="unavailable">Not Available</td>
         <td class="available">Available</td>
         <td class="available">Available</td>
         <td class="unavailable">Not Available</td>
+      </tr>
+      <tr>
+        <td>PELDEN</td>
+        <td>BP-2B-9087</td>
         <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+      </tr>
+      <tr>
+        <td>SONAM</td>
+        <td>BP-3B-4567</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+      </tr>
+      <tr>
+        <td>YANGCHEN</td>
+        <td>BP-3B-3456</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+      </tr>
+      <tr>
+        <td>TSHERING</td>
+        <td>BP-4B-3456</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
+        <td class="available">Available</td>
+        <td class="available">Available</td>
+        <td class="unavailable">Not Available</td>
       </tr>
     </table>
+
+    <h3>Live Vehicle Location</h3>
+    <div id="map"></div>
   </section>
 
   <section id="feedback" class="section">
@@ -225,6 +277,64 @@
   <footer>
     <p>&copy; 2025 State Mining Corporation Limited</p>
   </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cells = document.querySelectorAll('td.available, td.unavailable');
+      cells.forEach(cell => {
+        cell.addEventListener('click', () => {
+          if (cell.classList.contains('available')) {
+            cell.classList.remove('available');
+            cell.classList.add('unavailable');
+            cell.textContent = 'Not Available';
+          } else {
+            cell.classList.remove('unavailable');
+            cell.classList.add('available');
+            cell.textContent = 'Available';
+          }
+        });
+      });
+
+      // Leaflet Map centered on Bhutan
+      const map = L.map('map').setView([27.5, 90.4], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Example vehicle positions - replace with your actual data fetch
+      const exampleVehicles = [
+        { name: 'PEMA', latitude: 27.5, longitude: 90.4 },
+        { name: 'TSHERING', latitude: 27.6, longitude: 90.5 },
+        { name: 'PELDEN', latitude: 27.4, longitude: 90.3 },
+        { name: 'SONAM', latitude: 27.55, longitude: 90.45 },
+        { name: 'YANGCHEN', latitude: 27.45, longitude: 90.35 },
+        { name: 'TSHERING', latitude: 27.48, longitude: 90.38 }
+      ];
+
+      exampleVehicles.forEach(vehicle => {
+        const marker = L.marker([vehicle.latitude, vehicle.longitude]).addTo(map);
+        marker.bindPopup(`<strong>${vehicle.name}</strong><br>Lat: ${vehicle.latitude}<br>Lon: ${vehicle.longitude}`);
+      });
+
+      // If you have an API endpoint for live data, replace the example above with fetch like this:
+      /*
+      fetch('https://your-api-url.com/api/positions')
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(vehicle => {
+            const lat = vehicle.latitude;
+            const lon = vehicle.longitude;
+            const marker = L.marker([lat, lon]).addTo(map);
+            marker.bindPopup(`<strong>${vehicle.name || 'Vehicle'}</strong><br>Lat: ${lat}<br>Lon: ${lon}`);
+          });
+        })
+        .catch(err => {
+          console.error('Error fetching vehicle positions:', err);
+        });
+      */
+    });
+  </script>
 
 </body>
 </html>
